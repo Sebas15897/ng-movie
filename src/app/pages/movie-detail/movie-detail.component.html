@@ -1,1 +1,39 @@
-<p>movie-detail works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="card mt-4">
+      <img
+        class="card-img-top"
+        [src]="getPosterUrl(detailMovie?.poster_path)"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ detailMovie?.title }}</h5>
+        <div class="d-flex justify-content-between">
+          <div class="d-flex gap-2">
+            <img
+              width="20px"
+              height="20px"
+              src="assets/svg/calendar-solid.svg"
+              alt="calendario"
+            />
+            {{ detailMovie?.release_date }}
+            <p></p>
+          </div>
+          <div class="d-flex gap-2">
+            <img
+              width="20px"
+              height="20px"
+              src="assets/svg/star-solid.svg"
+              alt="clasificacion"
+            />
+            <p>{{ detailMovie?.popularity }}</p>
+          </div>
+        </div>
+        <p class="card-text">{{ detailMovie?.overview }}</p>
+        @for (item of detailMovie?.genres; track $index) {
+        <mat-chip class="me-2">{{ item?.name }}</mat-chip>
+        }
+      </div>
+    </div>
+  </div>
+</div>

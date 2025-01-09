@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'bootstrap/scss/bootstrap';
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-expansion-panel-header.mat-expanded,
+.mat-expansion-panel-header.mat-expanded:hover,
+.mat-expansion-panel-header.mat-expanded:focus {
+  mat-panel-title {
+    color: white;
+  }
+  .mat-expansion-panel-header-description,
+  .mat-expansion-indicator::after {
+    color: white;
+  }
+  background-color: #121212 !important;
+}
+
+.mat-stroked-custom {
+  color: #454545 !important;
+  border-color: #454545 !important;
+}
+
+.mat-stroked-bg-custom {
+  background-color: #454545 !important;
+  border-color: #454545 !important;
+  color: white !important;
+}
+
+.color-white {
+  color: white;
+}

@@ -1,1 +1,23 @@
-<p>layout works!</p>
+<main>
+  <div class="main-header">
+    <app-header></app-header>
+  </div>
+  <div class="main-content">
+    <mat-drawer-container class="h-100" autosize>
+      @if (isOpenMenu) {
+      <mat-drawer
+        style="background-color: #121212"
+        #sidenav
+        mode="side"
+        class="sidebar"
+        [(opened)]="isOpenMenu"
+      >
+        <app-sidebar></app-sidebar>
+      </mat-drawer>
+      }
+      <div class="content p-4 h-100">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-drawer-container>
+  </div>
+</main>

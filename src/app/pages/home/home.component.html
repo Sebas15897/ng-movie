@@ -1,1 +1,65 @@
-<p>home works!</p>
+<div class="row">
+  <div class="col-12">
+    <h2 class="text-center mt-4">Explora el Mundo del Cine</h2>
+    <p class="text-center">
+      Encuentra tus películas favoritas, descubre los últimos estrenos, y
+      sumérgete en los detalles de cada historia.<br />
+      Desde los clásicos hasta los éxitos del momento, todo está aquí para ti.
+    </p>
+  </div>
+  <div class="col-12 d-flex justify-content-center mt-4">
+    <div class="w-50 text-center">
+      <app-input-search (searchParams)="search($event)"></app-input-search>
+    </div>
+  </div>
+  @if (listMovies.length) {
+  <div class="col-12 mt-4">
+    <div class="row">
+      @for (movie of listMovies; track $index) {
+      <div class="col-sm-12 col-lg-3">
+        <div class="card mt-4" (click)="redirectMovieById(movie?.id)">
+          <img
+            class="card-img-top"
+            [src]="getPosterUrl(movie?.poster_path)"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ movie?.title }}</h5>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex gap-2">
+                <img
+                  width="20px"
+                  height="20px"
+                  src="assets/svg/calendar-solid.svg"
+                  alt="calendario"
+                />
+                {{ movie?.release_date }}
+                <p></p>
+              </div>
+              <div class="d-flex gap-2">
+                <img
+                  width="20px"
+                  height="20px"
+                  src="assets/svg/star-solid.svg"
+                  alt="clasificacion"
+                />
+                <p>{{ movie?.popularity }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  } @else {
+  <div class="col-12 mt-4 text-center">
+    <i
+      >¡Descubre tu próxima película favorita! Usa el buscador para explorar
+      <br />
+      títulos, géneros y clásicos del cine. Solo escribe el nombre de la <br />
+      película que tienes en mente y comienza tu aventura cinematográfica.</i
+    >
+  </div>
+  }
+</div>
