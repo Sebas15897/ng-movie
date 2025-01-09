@@ -1,15 +1,36 @@
 <div class="row">
   <div class="col-12">
-    <h2 class="text-center mt-4">Explora el Mundo del Cine</h2>
+    <h2 class="text-center mt-4">Las Más Populares del Momento</h2>
     <p class="text-center">
-      Encuentra tus películas favoritas, descubre los últimos estrenos, y
-      sumérgete en los detalles de cada historia.<br />
-      Desde los clásicos hasta los éxitos del momento, todo está aquí para ti.
+      Descubre las películas que están conquistando al público. Desde éxitos de
+      <br />
+      taquilla hasta historias inolvidables, estas son las favoritas del cine
+      <br />
+      actual. ¡No te pierdas lo mejor del momento!.
     </p>
   </div>
   <div class="col-12 d-flex justify-content-center mt-4">
     <div class="w-50 text-center">
       <app-input-search (searchParams)="search($event)"></app-input-search>
+    </div>
+  </div>
+  <div class="col-12 mt-4">
+    <div class="d-flex gap-2 justify-content-center align-items-center">
+      <button
+        mat-raised-button
+        [disabled]="currentPage === 1"
+        (click)="changePage(currentPage - 1)"
+      >
+        Anterior
+      </button>
+      <span>Página {{ currentPage }} de {{ totalPages }}</span>
+      <button
+        mat-raised-button
+        [disabled]="currentPage === totalPages"
+        (click)="changePage(currentPage + 1)"
+      >
+        Siguiente
+      </button>
     </div>
   </div>
   @if (listMovies?.length) {

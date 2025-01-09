@@ -23,8 +23,9 @@ export class MovieService {
     return this.http.get<IGetMovie>(`${url}/${movieId}`);
   }
 
-  getPopularMovies(): Observable<IGetMovieResponse> {
+  getPopularMovies(page: number = 1): Observable<IGetMovieResponse> {
+    const params = new HttpParams().set('page', page.toString());
     const url = this.appSettings.movies.urls.getPopularMovies;
-    return this.http.get<IGetMovieResponse>(url);
+    return this.http.get<IGetMovieResponse>(url, { params });
   }
 }

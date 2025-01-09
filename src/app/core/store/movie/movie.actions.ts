@@ -10,4 +10,5 @@ export class GetMovieDetails {
 
 export class GetPopularMovies {
   static readonly type = '[Movie] Get Popular Movies';
+  constructor(public page: number) {}
 }

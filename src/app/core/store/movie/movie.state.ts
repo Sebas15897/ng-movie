@@ -7,10 +7,10 @@ import {
 } from './movie.actions';
 import { tap } from 'rxjs/operators';
 import { MovieService } from '../../services/movie/movie.service';
-import { IGetMovie } from '../../interfaces/movie.interface';
+import { IGetMovie, IGetMovieResponse } from '../../interfaces/movie.interface';
 
 export interface MovieStateModel {
-  popularMovies: IGetMovie[];
+  popularMovies: IGetMovieResponse;
   searchMovies: IGetMovie[];
   selectMovie: IGetMovie;
 }
@@ -19,7 +19,7 @@ export interface MovieStateModel {
   name: 'movies',
   defaults: {
     searchMovies: [],
-    popularMovies: [],
+    popularMovies: null,
     selectMovie: null,
   },
 })
@@ -34,6 +34,11 @@ export class MovieState {
   @Selector()
   static movieByIdSelect(state: MovieStateModel): IGetMovie {
     return state.selectMovie;
+  }
+
+  @Selector()
+  static popularMoviesSelect(state: MovieStateModel): IGetMovieResponse {
+    return state.popularMovies;
   }
 
   constructor(private movieService: MovieService) {}
@@ -57,10 +62,10 @@ export class MovieState {
   }
 
   @Action(GetPopularMovies)
-  getPopularMovies(ctx: StateContext<MovieStateModel>) {
-    return this.movieService.getPopularMovies().pipe(
+  getPopularMovies(ctx: StateContext<MovieStateModel>, action: GetPopularMovies) {
+    return this.movieService.getPopularMovies(action.page).pipe(
       tap((response) => {
-        ctx.patchState({ popularMovies: response.results });
+        ctx.patchState({ popularMovies: response });
       })
     );
   }

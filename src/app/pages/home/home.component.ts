@@ -4,10 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngxs/store';
-import {
-  GetPopularMovies,
-  SearchMovies,
-} from '../../core/store/movie/movie.actions';
+import { SearchMovies } from '../../core/store/movie/movie.actions';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { MovieState } from '../../core/store/movie/movie.state';
 import { InputSearchComponent } from '../../core/shared/input-search/input-search.component';
@@ -37,7 +34,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(private store: Store, private router: Router) {
     this.getSearchMovies$ = this.store.select(MovieState.searchMoviesSelect);
-    this.store.dispatch(new GetPopularMovies());
   }
   ngOnInit() {
     this.subscribeState();

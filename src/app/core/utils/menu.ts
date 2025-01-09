@@ -12,12 +12,7 @@ export const Menu: IMenu[] = [
       {
         description: 'Populares',
         icon: '',
-        path: 'private/add-contact',
-      },
-      {
-        description: 'Estrenos',
-        icon: '',
-        path: '',
+        path: 'admin/popular-movie',
       },
     ],
   },
